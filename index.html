@@ -229,6 +229,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/JavaScript数据类型转换/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eririgasuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog for learning">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/31/JavaScript数据类型转换/" itemprop="url">JavaScript数据类型转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-31T14:07:37+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="任意类型转字符串"><a href="#任意类型转字符串" class="headerlink" title="任意类型转字符串"></a>任意类型转字符串</h2><ol>
+<li>Sting(x)<br><img src="https://i.loli.net/2018/12/31/5c29c91a8febb.jpg" alt="String(x).jpg"></li>
+<li>x.toString()<br><img src="https://i.loli.net/2018/12/31/5c29c91abfa91.jpg" alt="toSting.jpg"></li>
+<li>x + ‘’<br><img src="https://i.loli.net/2018/12/31/5c29c91aaa96a.jpg" alt="x+&#39;&#39;.jpg"></li>
+</ol>
+<h2 id="任意类型转数字"><a href="#任意类型转数字" class="headerlink" title="任意类型转数字"></a>任意类型转数字</h2><ul>
+<li>Number(x)</li>
+<li>parseInt(x, 10) MDN</li>
+<li>parseFloat(x) MDN</li>
+<li>x - 0</li>
+<li>+x</li>
+</ul>
+<h2 id="任意类型转布尔"><a href="#任意类型转布尔" class="headerlink" title="任意类型转布尔"></a>任意类型转布尔</h2><ol>
+<li>Boolean(x)</li>
+<li>!!x</li>
+</ol>
+<h2 id="内存图"><a href="#内存图" class="headerlink" title="内存图"></a>内存图</h2><p>数据区分为 Stack（栈内存） 和 Heap（堆内存）<br>简单类型的数据直接存在 Stack 里<br>复杂类型的数据是把 Heap 地址存在 Stack 里</p>
+<p><img src="https://i.loli.net/2018/12/31/5c29d488595df.png" alt="stackHeap.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2</span><br><span class="line">// a = 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = &#123;name: &apos;b&apos;&#125;</span><br><span class="line">// a.name = &apos;a&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">// a.name = &apos;b&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = null</span><br><span class="line">// a = &apos;a&apos;</span><br></pre></td></tr></table></figure>
+<p>浏览器是先从左到右分析变量，再从右往左计算。所以a.x和a在stack里的地址不同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;n:1&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">var a.x = a = &#123;n:2&#125;;</span><br><span class="line"></span><br><span class="line">alert(a.x); // undefined</span><br><span class="line">alert(b.x); // [object object]</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/12/31/5c29d7a5cd541.png" alt="stackHeapTest.png"></p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>清理没有被stack区引用的heap区对象,释放内存空间,供其他对象使用。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2 //这个时候改变 b</span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;frank&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">a.name === &apos;b&apos; // true</span><br><span class="line">我们对 b 操作后，a 也变了</span><br><span class="line">那么我们就说这是一个浅拷贝</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/JavaScript的数据类型/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1507,7 +1653,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

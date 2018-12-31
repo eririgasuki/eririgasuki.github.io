@@ -79,17 +79,23 @@
 
 
 
-<meta name="description" content="空元素一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。在 HTML 中有以下这些空元素：1234567891011121314151617&amp;lt;area&amp;gt;&amp;lt;base&amp;gt;&amp;lt;br&amp;gt;&amp;lt;col&amp;gt;&amp;lt;colgroup&amp;gt; when the spa">
+<meta name="description" content="类型转换任意类型转字符串 Sting(x) x.toString() x + ‘’  任意类型转数字 Number(x) parseInt(x, 10) MDN parseFloat(x) MDN x - 0 +x  任意类型转布尔 Boolean(x) !!x  内存图数据区分为 Stack（栈内存） 和 Heap（堆内存）简单类型的数据直接存在 Stack 里复杂类型的数据是把 Heap 地址">
 <meta property="og:type" content="article">
-<meta property="og:title" content="空元素与可替换元素">
-<meta property="og:url" content="http://yoursite.com/2018/11/30/空元素与可替换元素/index.html">
+<meta property="og:title" content="JavaScript数据类型转换">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/JavaScript数据类型转换/index.html">
 <meta property="og:site_name" content="Blog for learning">
-<meta property="og:description" content="空元素一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。在 HTML 中有以下这些空元素：1234567891011121314151617&amp;lt;area&amp;gt;&amp;lt;base&amp;gt;&amp;lt;br&amp;gt;&amp;lt;col&amp;gt;&amp;lt;colgroup&amp;gt; when the spa">
+<meta property="og:description" content="类型转换任意类型转字符串 Sting(x) x.toString() x + ‘’  任意类型转数字 Number(x) parseInt(x, 10) MDN parseFloat(x) MDN x - 0 +x  任意类型转布尔 Boolean(x) !!x  内存图数据区分为 Stack（栈内存） 和 Heap（堆内存）简单类型的数据直接存在 Stack 里复杂类型的数据是把 Heap 地址">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-30T15:13:05.291Z">
+<meta property="og:image" content="https://i.loli.net/2018/12/31/5c29c91a8febb.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/12/31/5c29c91abfa91.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/12/31/5c29c91aaa96a.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/12/31/5c29d488595df.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/31/5c29d7a5cd541.png">
+<meta property="og:updated_time" content="2018-12-31T08:56:08.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="空元素与可替换元素">
-<meta name="twitter:description" content="空元素一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。在 HTML 中有以下这些空元素：1234567891011121314151617&amp;lt;area&amp;gt;&amp;lt;base&amp;gt;&amp;lt;br&amp;gt;&amp;lt;col&amp;gt;&amp;lt;colgroup&amp;gt; when the spa">
+<meta name="twitter:title" content="JavaScript数据类型转换">
+<meta name="twitter:description" content="类型转换任意类型转字符串 Sting(x) x.toString() x + ‘’  任意类型转数字 Number(x) parseInt(x, 10) MDN parseFloat(x) MDN x - 0 +x  任意类型转布尔 Boolean(x) !!x  内存图数据区分为 Stack（栈内存） 和 Heap（堆内存）简单类型的数据直接存在 Stack 里复杂类型的数据是把 Heap 地址">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/31/5c29c91a8febb.jpg">
 
 
 
@@ -119,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/30/空元素与可替换元素/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/JavaScript数据类型转换/">
 
 
 
 
 
-  <title>空元素与可替换元素 | Blog for learning</title>
+  <title>JavaScript数据类型转换 | Blog for learning</title>
   
 
 
@@ -232,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/30/空元素与可替换元素/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/JavaScript数据类型转换/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="eririgasuki">
@@ -249,7 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">空元素与可替换元素</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript数据类型转换</h1>
         
 
         <div class="post-meta">
@@ -261,8 +267,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-30T23:08:52+08:00">
-                2018-11-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-31T14:07:37+08:00">
+                2018-12-31
               </time>
             
 
@@ -299,11 +305,34 @@
       
 
       
-        <h1 id="空元素"><a href="#空元素" class="headerlink" title="空元素"></a>空元素</h1><h2 id="一个空元素（empty-element）可能是-HTML，SVG，或者-MathML-里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。"><a href="#一个空元素（empty-element）可能是-HTML，SVG，或者-MathML-里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。" class="headerlink" title="一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。"></a>一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。</h2><p>在 HTML 中有以下这些空元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;area&gt;</span><br><span class="line">&lt;base&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;col&gt;</span><br><span class="line">&lt;colgroup&gt; when the span is present</span><br><span class="line">&lt;command&gt;</span><br><span class="line">&lt;embed&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;img&gt;</span><br><span class="line">&lt;input&gt;</span><br><span class="line">&lt;keygen&gt;</span><br><span class="line">&lt;link&gt;</span><br><span class="line">&lt;meta&gt;</span><br><span class="line">&lt;param&gt;</span><br><span class="line">&lt;source&gt;</span><br><span class="line">&lt;track&gt;</span><br><span class="line">&lt;wbr&gt;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h1><p>CSS 里，可替换元素（replaced element）的展现不是由CSS来控制的。这些元素是一类 外观渲染独立于CSS的 外部对象。</p>
-<p>典型的可替换元素有 <code>&lt;img&gt;</code>、 <code>&lt;object&gt;</code>、 <code>&lt;video&gt;</code> 和 表单元素，如<code>&lt;textarea&gt;</code>、 <code>&lt;input&gt;</code> 。 某些元素只在一些特殊情况下表现为可替换元素，例如 <code>&lt;audio&gt;</code> 和 <code>&lt;canvas&gt;</code> 。 通过 CSS content 属性来插入的对象 被称作 匿名可替换元素（anonymous replaced elements）。</p>
-
+        <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="任意类型转字符串"><a href="#任意类型转字符串" class="headerlink" title="任意类型转字符串"></a>任意类型转字符串</h2><ol>
+<li>Sting(x)<br><img src="https://i.loli.net/2018/12/31/5c29c91a8febb.jpg" alt="String(x).jpg"></li>
+<li>x.toString()<br><img src="https://i.loli.net/2018/12/31/5c29c91abfa91.jpg" alt="toSting.jpg"></li>
+<li>x + ‘’<br><img src="https://i.loli.net/2018/12/31/5c29c91aaa96a.jpg" alt="x+&#39;&#39;.jpg"></li>
+</ol>
+<h2 id="任意类型转数字"><a href="#任意类型转数字" class="headerlink" title="任意类型转数字"></a>任意类型转数字</h2><ul>
+<li>Number(x)</li>
+<li>parseInt(x, 10) MDN</li>
+<li>parseFloat(x) MDN</li>
+<li>x - 0</li>
+<li>+x</li>
+</ul>
+<h2 id="任意类型转布尔"><a href="#任意类型转布尔" class="headerlink" title="任意类型转布尔"></a>任意类型转布尔</h2><ol>
+<li>Boolean(x)</li>
+<li>!!x</li>
+</ol>
+<h2 id="内存图"><a href="#内存图" class="headerlink" title="内存图"></a>内存图</h2><p>数据区分为 Stack（栈内存） 和 Heap（堆内存）<br>简单类型的数据直接存在 Stack 里<br>复杂类型的数据是把 Heap 地址存在 Stack 里</p>
+<p><img src="https://i.loli.net/2018/12/31/5c29d488595df.png" alt="stackHeap.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2</span><br><span class="line">// a = 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = &#123;name: &apos;b&apos;&#125;</span><br><span class="line">// a.name = &apos;a&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">// a.name = &apos;b&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = null</span><br><span class="line">// a = &apos;a&apos;</span><br></pre></td></tr></table></figure>
+<p>浏览器是先从左到右分析变量，再从右往左计算。所以a.x和a在stack里的地址不同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;n:1&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">var a.x = a = &#123;n:2&#125;;</span><br><span class="line"></span><br><span class="line">alert(a.x); // undefined</span><br><span class="line">alert(b.x); // [object object]</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/12/31/5c29d7a5cd541.png" alt="stackHeapTest.png"></p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>清理没有被stack区引用的heap区对象,释放内存空间,供其他对象使用。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2 //这个时候改变 b</span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;frank&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">a.name === &apos;b&apos; // true</span><br><span class="line">我们对 b 操作后，a 也变了</span><br><span class="line">那么我们就说这是一个浅拷贝</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -327,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/28/HTTP请求响应/" rel="next" title="HTTP请求响应">
-                <i class="fa fa-chevron-left"></i> HTTP请求响应
+              <a href="/2018/12/31/JavaScript的数据类型/" rel="next" title="JavaScript的数据类型">
+                <i class="fa fa-chevron-left"></i> JavaScript的数据类型
               </a>
             
           </div>
@@ -336,10 +365,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/01/HTML常用标签/" rel="prev" title="HTML常用标签">
-                HTML常用标签 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -453,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#空元素"><span class="nav-number">1.</span> <span class="nav-text">空元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个空元素（empty-element）可能是-HTML，SVG，或者-MathML-里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。"><span class="nav-number">1.1.</span> <span class="nav-text">一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可替换元素"><span class="nav-number">2.</span> <span class="nav-text">可替换元素</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换"><span class="nav-number">1.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任意类型转字符串"><span class="nav-number">1.1.</span> <span class="nav-text">任意类型转字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任意类型转数字"><span class="nav-number">1.2.</span> <span class="nav-text">任意类型转数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任意类型转布尔"><span class="nav-number">1.3.</span> <span class="nav-text">任意类型转布尔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存图"><span class="nav-number">1.4.</span> <span class="nav-text">内存图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收"><span class="nav-number">1.5.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝"><span class="nav-number">1.6.</span> <span class="nav-text">深拷贝</span></a></li></ol></li></ol></div>
             
 
           </div>
