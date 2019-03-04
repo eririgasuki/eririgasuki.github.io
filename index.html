@@ -229,6 +229,140 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/Reflow和Repaint对前端性能的影响/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eririgasuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog for learning">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/04/Reflow和Repaint对前端性能的影响/" itemprop="url">Reflow和Repaint对前端性能的影响</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T16:14:35+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Reflow和Repaint是什么？"><a href="#Reflow和Repaint是什么？" class="headerlink" title="Reflow和Repaint是什么？"></a>Reflow和Repaint是什么？</h1><p><em>Repaint</em> 就是“重绘”，它会在你改变 DOM 元素的视觉效果时进行，改变布局时不会触发。比如，<code>opacity,background-color,visibility</code>和<code>outline</code>等都会触发，“重绘”的开销还是比较昂贵的，因为浏览器会在某一个DOM元素的视觉效果改变后去check这个DOM元素内的所有节点。</p>
+<p><em>Reflow</em> 就是“回流”，它的影响更大。它会在某一个DOM元素的位置发生改变后触发，而且它会重新计算所有元素的位置和在页面中的占有的面积，这样的话将会引起页面某一个部分甚至整个页面的重新渲染。改变某一个元素会影响它所有的子节点 (children)、祖先节点 (ancestors) 及兄弟节点(siblings)。</p>
+<p>浏览器的对待页面是<em>先布局后渲染</em>,在PC端Reflow和Repaint对于性能的影响是微乎其微，但是在<em>移动端</em>这俩货简直就是<em>性能杀手</em>。</p>
+<p>repaint和reflow是DOM操作影响性能的主要原因。一个节点触发了repaint，浏览器会检查DOM Tree中其他所有节点的显示方式；一个节点触发了reflow会导致它的祖先节点，后代节点以及在它之后的节点全部reflow。<em>reflow对性能的影响大于repaint</em>。</p>
+<p>什么情况下会触发Reflow？</p>
+<ul>
+<li>添加、删除或者改变DOM元素的可见性时：使用JS去改变DOM元素时会触发Reflow。</li>
+<li>添加、删除或者改变CSS样式：直接改变CSS Style或者元素的class可能会影响布局，还有改变一个元素的宽度能够影响它所在的DOM节点中的所有元素，以及它周围的那些元素。</li>
+<li>CSS3 动画（<code>animation</code>）和过渡（<code>transition</code>）: 动画的每一frame都会触发Reflow。</li>
+<li>使用<code>offsetWidth</code>和<code>offsetHeight</code>：这一点很特别，你读一个DOM的offsetWidth和offsetHeight属性同样会触发一下Reflow，因为这两个属性需要依赖一些元素去计算。</li>
+<li>用户交互：用户可以通过<code>:hover</code>一下<code>&lt;a&gt;</code>链接，在input里面输入文字，拖动浏览器的大小，改变字体大小，更换样式表或者字体等都会触发reflow。</li>
+</ul>
+<h1 id="如何提高性能？"><a href="#如何提高性能？" class="headerlink" title="如何提高性能？"></a>如何提高性能？</h1><table><br>    <caption>一些常用的提高性能的原则</caption><br>    <thead><br>        <tr><br>            <th>方面</th><br>            <th>方法</th><br>        </tr><br>    </thead><br>    <tbody><br>        <tr><br>            <td>布局</td><br>            <td>不要用 inline style 或 table 布局，flexbox 布局也会给性能带来一些小困扰。inline style 会在 html下载完后进行一次额外的 Reflow，table布局的开销远比其他 DOM 元素的布局开销要大。flexbox 的 item 会在HTML 下载完成后改变尺寸。</td><br>        </tr><br>        <tr><br>            <td>简写CSS</td><br>            <td>尽量简写CSS，避免使用复杂的CSS选择器，使用 Unused CSS <a href="https://unused-css.com/）" target="_blank" rel="noopener">https://unused-css.com/）</a>, uCSS（https:/github.com/oyvindeh/ucss）, gulp-uncss（<a href="https://github.com/ben-eb/gulp-uncss）可以有效的减少样式定义和文件的大小。" target="_blank" rel="noopener">https://github.com/ben-eb/gulp-uncss）可以有效的减少样式定义和文件的大小。</a></td><br>        </tr><br>        <tr><br>            <td>优化DOM</td><br>            <td>减少DOM的层级，减少DOM的数量，如果不需适配老浏览器，删掉一些无用的wrapper性质的DOM元素，总之越少好。</td><br>        </tr><br>        <tr><br>            <td>慎改class</td><br>            <td>在一个DOM树中，尽可能改那些没有特别多子元素DOM的class，子元素少的可以改，多的不推荐。</td><br>        </tr><br>        <tr><br>            <td>避免复杂动画</td><br>            <td>删掉复杂的动画，运用动画的元素尽量是position:absolute或position:fixed的，这样会让他们脱离文档流不去影响其他的元素。</td><br>        </tr><br>        <tr><br>            <td>善用display:none</td><br>            <td>display:none的元素不会引发Reflow和Repaint，可以在让这些元素在display之前进行一些诸如颜色、尺寸么的改变。</td><br>        </tr><br>        <tr><br>            <td>批量更新元素</td><br>            <td>将状态写入一个类中，用JQ直接给元素添加或删除这个类，而不是直接通过方法来修改元素样式状态。</td><br>        </tr><br>        <tr><br>            <td>避免大量DOM互相影响</td><br>            <td>比如Tabs这种场景，如果你点击一个Tab会显示它控制的区块，显示的那个区块会影响其他的区块，这样可能会起Reflow，因为它们的高度不一样，可以通过定个高度来优化这种场景。</td><br>        </tr><br>        <tr><br>            <td>性能永远比酷炫重要</td><br>            <td>记住一个原则，你网页的动画再牛逼，性能还是第一位的，如果每一帧移动1个像素会造成你的页面卡顿，那宁愿一帧移动10像素让动画的帧变得迟钝一些，也不要让页面的性能降下来。</td><br>        </tr><br>    </tbody><br></table>
+
+<p><a href="https://juejin.im/entry/595b5c135188250d7767f7d3" target="_blank" rel="noopener">参考链接</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/07/Cookie与登录注册/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1768,173 +1902,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/HTTP请求响应/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="eririgasuki">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog for learning">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/28/HTTP请求响应/" itemprop="url">HTTP请求响应</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-28T16:47:23+08:00">
-                2018-11-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><h2 id="请求的格式"><a href="#请求的格式" class="headerlink" title="请求的格式"></a>请求的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 动词 路径 协议/版本</span><br><span class="line">2 Key1: value1</span><br><span class="line">2 Key2: value2</span><br><span class="line">2 Key3: value3</span><br><span class="line">2 Content-Type: application/x-www-form-urlencoded</span><br><span class="line">2 Host: www.baidu.com</span><br><span class="line">2 User-Agent: curl/7.54.0</span><br><span class="line">3 </span><br><span class="line">4 要上传的数据</span><br></pre></td></tr></table></figure>
-<ol start="0">
-<li>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）</li>
-<li>第三部分永远都是一个回车（\n）</li>
-<li>动词有 GET POST PUT PATCH DELETE HEAD OPTIONS 等</li>
-<li>这里的路径包括「查询参数」，但不包括「锚点」</li>
-<li>如果你没有写路径，那么路径默认为 /</li>
-<li>第 2 部分中的 Content-Type 标注了第 4 部分的格式</li>
-</ol>
-<h2 id="用Chrome开发者工具查看-HTTP-请求内容"><a href="#用Chrome开发者工具查看-HTTP-请求内容" class="headerlink" title="用Chrome开发者工具查看 HTTP 请求内容"></a>用Chrome开发者工具查看 HTTP 请求内容</h2><ol>
-<li>打开 Network</li>
-<li>地址栏输入网址</li>
-<li>在 Network 点击，查看 request，<strong>点击「view source」</strong></li>
-<li>如果有请求的第四部分，那么在 FormData 或 Payload 里面可以看到</li>
-</ol>
-<hr>
-<h1 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h1><h2 id="响应的格式"><a href="#响应的格式" class="headerlink" title="响应的格式"></a>响应的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1 协议/版本号 状态码 状态解释</span><br><span class="line">2 Key1: value1</span><br><span class="line">2 Key2: value2</span><br><span class="line">2 Content-Length: 17931</span><br><span class="line">2 Content-Type: text/html</span><br><span class="line">3</span><br><span class="line">4 要下载的内容</span><br></pre></td></tr></table></figure>
-<ul>
-<li>HTTP状态码（HTTP Status Code）是用以表示网页服务器HTTP响应状态的3位数字代码。<ul>
-<li>1XX 不常用 代表请求已被接受，需要继续处理。</li>
-<li>2XX 成功 代表请求已成功被服务器接收、理解、并接受。</li>
-<li>3XX 重定向 这类状态码代表需要客户端采取进一步的操作才能完成请求。</li>
-<li>4XX 请求错误 这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。</li>
-<li>5XX 服务器错误 这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生，也有可能是服务器意识到以当前的软硬件资源无法完成对请求的处理。</li>
-</ul>
-</li>
-<li>状态解释仅辅助理解状态码，用处不大。</li>
-<li>第 2 部分中的 Content-Type 标注了第 4 部分的格式</li>
-<li>第 2 部分中的 Content-Type 遵循 <a href="https://baike.baidu.com/item/MIME/2900607?fr=aladdin" target="_blank" rel="noopener">MIME规范</a></li>
-</ul>
-<h2 id="用Chrome开发者工具查看-HTTP-响应内容"><a href="#用Chrome开发者工具查看-HTTP-响应内容" class="headerlink" title="用Chrome开发者工具查看 HTTP 响应内容"></a>用Chrome开发者工具查看 HTTP 响应内容</h2><ol>
-<li>打开 Network</li>
-<li>输入网址</li>
-<li>选中第一个响应</li>
-<li>查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</li>
-<li>你会看到响应的前两部分</li>
-<li>查看 Response 或者 Preview，你会看到响应的第 4 部分</li>
-</ol>
-<hr>
-<h1 id="curl-命令"><a href="#curl-命令" class="headerlink" title="curl 命令"></a>curl 命令</h1><h2 id="curl常用（tldr）"><a href="#curl常用（tldr）" class="headerlink" title="curl常用（tldr）"></a>curl常用（tldr）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">curl ：   Transfers data from or to a server.Supports most protocols, including HTTP, FTP, and POP3.</span><br><span class="line"></span><br><span class="line">**下载网页** Download the contents of an URL to a file: curl http://example.com -o filename </span><br><span class="line"></span><br><span class="line">**下载文件** Download a file, saving the output under the filename indicated by the URL: curl -O http://example.com/filename </span><br><span class="line"></span><br><span class="line">**提交post内容** Send form-encoded data (POST request of type application/x-www-form-urlencoded): curl -d &apos;name=bob&apos; http://example.com/form </span><br><span class="line"></span><br><span class="line">**提交额外header内容** Send a request with an extra header, using a custom HTTP method: curl -H &apos;X-My-Header: 123&apos; -X PUT http://example.com</span><br></pre></td></tr></table></figure>
-<h2 id="请求示例"><a href="#请求示例" class="headerlink" title="请求示例"></a>请求示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d &quot;name=bob&quot; -s -v -H &quot;X-My-Header: 123&quot; -- &quot;https://www.baidu.com&quot;</span><br></pre></td></tr></table></figure>
-<p>请求的内容为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: www.baidu.com</span><br><span class="line">User-Agent: curl/7.54.0</span><br><span class="line">Accept: */*</span><br><span class="line">X-My-Header: 123</span><br><span class="line">Content-Length: 8</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">name=bob</span><br></pre></td></tr></table></figure>
-<ul>
-<li>-X POST 表示用post请求</li>
-<li>-S 不用进度条或错误信息的silent模式</li>
-<li>-V 显示请求和响应</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1985,7 +1952,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
