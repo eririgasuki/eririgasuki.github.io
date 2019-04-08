@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="web性能优化思路首先理解页面加载过程，然后从中考虑可能的解决方向。  缓存 DNS查询  — 减少DNS查询 建立TCP连接 — 连接复用（keep-alive） 发送HTTP请求 — 减小cookie — cache-control 接受响应 — Etag 304 — Gzip 接受完成 Doctype（html/xml) 逐行解析 解析到标签 在页面中渲染标签 （IE） 等CSS解析完了再渲">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/11/07/hello-world/index.html">
+<meta property="og:title" content="web性能优化的常见方法">
+<meta property="og:url" content="http://yoursite.com/2019/04/08/web性能优化的常见方法/index.html">
 <meta property="og:site_name" content="Blog for learning">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="web性能优化思路首先理解页面加载过程，然后从中考虑可能的解决方向。  缓存 DNS查询  — 减少DNS查询 建立TCP连接 — 连接复用（keep-alive） 发送HTTP请求 — 减小cookie — cache-control 接受响应 — Etag 304 — Gzip 接受完成 Doctype（html/xml) 逐行解析 解析到标签 在页面中渲染标签 （IE） 等CSS解析完了再渲">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-07T11:28:54.403Z">
+<meta property="og:updated_time" content="2019-04-08T12:08:19.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="web性能优化的常见方法">
+<meta name="twitter:description" content="web性能优化思路首先理解页面加载过程，然后从中考虑可能的解决方向。  缓存 DNS查询  — 减少DNS查询 建立TCP连接 — 连接复用（keep-alive） 发送HTTP请求 — 减小cookie — cache-control 接受响应 — Etag 304 — Gzip 接受完成 Doctype（html/xml) 逐行解析 解析到标签 在页面中渲染标签 （IE） 等CSS解析完了再渲">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/07/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/08/web性能优化的常见方法/">
 
 
 
 
 
-  <title>Hello World | Blog for learning</title>
+  <title>web性能优化的常见方法 | Blog for learning</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/web性能优化的常见方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="eririgasuki">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">web性能优化的常见方法</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-07T19:28:54+08:00">
-                2018-11-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T14:10:56+08:00">
+                2019-04-08
               </time>
             
 
@@ -299,15 +299,30 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="web性能优化思路"><a href="#web性能优化思路" class="headerlink" title="web性能优化思路"></a>web性能优化思路</h1><p>首先理解页面加载过程，然后从中考虑可能的解决方向。</p>
+<ol>
+<li>缓存</li>
+<li>DNS查询  — 减少DNS查询</li>
+<li>建立TCP连接 — 连接复用（<code>keep-alive</code>）</li>
+<li>发送HTTP请求 — 减小cookie — cache-control</li>
+<li>接受响应 — Etag 304 — Gzip</li>
+<li>接受完成</li>
+<li>Doctype（html/xml)</li>
+<li>逐行解析</li>
+<li>解析到标签<ul>
+<li>在页面中渲染标签 （IE）</li>
+<li>等CSS解析完了再渲染标签 （chrome）</li>
+</ul>
+</li>
+<li>解析到CSS<ul>
+<li>下载CSS</li>
+<li>继续解析看还有没有CSS</li>
+<li>并行下载，串行解析（IE同时下载4个，chrome同时下载8个）</li>
+</ul>
+</li>
+</ol>
+<h2 id="使用-CDN"><a href="#使用-CDN" class="headerlink" title="使用 CDN"></a>使用 CDN</h2><h2 id="使用-Cache-Control"><a href="#使用-Cache-Control" class="headerlink" title="使用 Cache-Control"></a>使用 Cache-Control</h2><h2 id="使用-Etag"><a href="#使用-Etag" class="headerlink" title="使用 Etag"></a>使用 Etag</h2><h2 id="使用-Gzip"><a href="#使用-Gzip" class="headerlink" title="使用 Gzip"></a>使用 Gzip</h2><h2 id="合并文件（CSS、JS、图片）"><a href="#合并文件（CSS、JS、图片）" class="headerlink" title="合并文件（CSS、JS、图片）"></a>合并文件（CSS、JS、图片）</h2><h2 id="调整-CSS-和-JS-的位置"><a href="#调整-CSS-和-JS-的位置" class="headerlink" title="调整 CSS 和 JS 的位置"></a>调整 CSS 和 JS 的位置</h2><p>CSS放到head里，js放在body最底部。</p>
+<h2 id="压缩图片的工具"><a href="#压缩图片的工具" class="headerlink" title="压缩图片的工具"></a>压缩图片的工具</h2><h2 id="增加域名以并行下载资源"><a href="#增加域名以并行下载资源" class="headerlink" title="增加域名以并行下载资源"></a>增加域名以并行下载资源</h2><h2 id="懒加载和预加载"><a href="#懒加载和预加载" class="headerlink" title="懒加载和预加载"></a>懒加载和预加载</h2><p>最开始只加载首屏内容，然后看情况预加载后面的内容。通过js监听<code>onscroll</code>来决定记载哪些内容。</p>
 
       
     </div>
@@ -332,15 +347,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/04/08/JavaScript中使用prototype和class实现继承的对比/" rel="next" title="JavaScript中使用prototype和class实现继承的对比">
+                <i class="fa fa-chevron-left"></i> JavaScript中使用prototype和class实现继承的对比
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/28/HTTP请求响应/" rel="prev" title="HTTP请求响应">
-                HTTP请求响应 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,7 +469,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web性能优化思路"><span class="nav-number">1.</span> <span class="nav-text">web性能优化思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-CDN"><span class="nav-number">1.1.</span> <span class="nav-text">使用 CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Cache-Control"><span class="nav-number">1.2.</span> <span class="nav-text">使用 Cache-Control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Etag"><span class="nav-number">1.3.</span> <span class="nav-text">使用 Etag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Gzip"><span class="nav-number">1.4.</span> <span class="nav-text">使用 Gzip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并文件（CSS、JS、图片）"><span class="nav-number">1.5.</span> <span class="nav-text">合并文件（CSS、JS、图片）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调整-CSS-和-JS-的位置"><span class="nav-number">1.6.</span> <span class="nav-text">调整 CSS 和 JS 的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩图片的工具"><span class="nav-number">1.7.</span> <span class="nav-text">压缩图片的工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加域名以并行下载资源"><span class="nav-number">1.8.</span> <span class="nav-text">增加域名以并行下载资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载和预加载"><span class="nav-number">1.9.</span> <span class="nav-text">懒加载和预加载</span></a></li></ol></li></ol></div>
             
 
           </div>
