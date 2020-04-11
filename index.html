@@ -229,6 +229,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/初识分布式系统/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="eririgasuki">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog for learning">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/10/初识分布式系统/" itemprop="url">初识分布式系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-10T22:16:26+08:00">
+                2020-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>分布式系统是一个古老而宽泛的话题，近年因“大数据”等概念的兴起，又焕发出了青春。</p>
+<p>总的来说，<strong>分布式系统</strong>要做的任务就是把<strong>多台机器</strong>有机的组合，连接起来，让其<strong>协同完成</strong>同一件任务，可以是<strong>计算任务</strong>，也可以是<strong>存储任务</strong>。</p>
+<p>分布式系统大概包括三大部分：</p>
+<ol>
+<li>分布式存储系统</li>
+<li>分布式计算系统</li>
+<li>分布式管理系统</li>
+</ol>
+<h2 id="分布式存储系统"><a href="#分布式存储系统" class="headerlink" title="分布式存储系统"></a>分布式存储系统</h2><p>分布式存储系统大概可以分为四个子方向：</p>
+<ol>
+<li>结构化存储</li>
+<li>非结构化存储</li>
+<li>半结构化存储</li>
+<li>In-memory 存储</li>
+</ol>
+<h3 id="结构化存储-structured-storage-systems"><a href="#结构化存储-structured-storage-systems" class="headerlink" title="结构化存储(structured storage systems)"></a>结构化存储(structured storage systems)</h3><p>典型场景就是 <strong>事务处理系统</strong>或<strong>关系型数据库</strong>。
+结构化存储系统强调的是：</p>
+<ol>
+<li>结构化的数据（例如关系表）。</li>
+<li>强一致性（例如银行系统，电商系统等场景）。</li>
+<li>随机访问（索引，增删改查，SQL语言）。</li>
+</ol>
+<p>然而，正是由于这些性质和限制，<strong>结构化存储系统</strong>的可<strong>扩展性</strong>通常<strong>不是很好</strong>，这在一定程度上限制了大数据环境下的表现。</p>
+<h3 id="非结构化存储-no-structured-storage-systems"><a href="#非结构化存储-no-structured-storage-systems" class="headerlink" title="非结构化存储(no-structured storage systems)"></a>非结构化存储(no-structured storage systems)</h3><p>和结构化存储不同，<strong>非结构化存储</strong>强调的是<strong>高扩展性</strong>，典型的系统就是分布式系统。</p>
+<p>Google在2013年推出的GFS(google file system)做出了里程碑的一步，其开源实现对应为HDFS.GFS的主要思想包括：</p>
+<ol>
+<li>用master来管理metadata。</li>
+<li>文件使用64MB的chunks来存储，并且在多个server上保存多个副本。</li>
+<li>自动容错，自动错误恢复。</li>
+</ol>
+<p>虽然分布式文件系统的可扩展性，吞吐率都非常好，但几乎<strong>无法支持随机访问(random access)操作</strong>，通常<strong>只能进行文件追加(append)操作</strong>。
+这使得<strong>非结构化存储</strong>系统很<strong>难面对低延时，实时性较强的应用</strong>。</p>
+<h3 id="半结构化存储-semi-structure-storage-systems"><a href="#半结构化存储-semi-structure-storage-systems" class="headerlink" title="半结构化存储(semi-structure storage systems)"></a>半结构化存储(semi-structure storage systems)</h3><p><strong>半结构化存储</strong>便是为了解决结非构化存储系统随机访问性能差的问题。NoSQL,Key-Value Store,对象存储等都属于半结构化存储研究的领域。
+NoSQL系统既有分布式文件系统所具有的可扩展性，又有结构化存储系统的随机访问能力（例如随机update, read 操作），系统在<strong>设计时</strong>通常<strong>选择简单键值（K-V）进行存储</strong>，抛弃了传统RDBMS里复杂SQL查询以及ACID事务。这样做可以<strong>换取系统最大的限度的可扩展性和灵活性</strong>。</p>
+<h3 id="In-memory存储"><a href="#In-memory存储" class="headerlink" title="In-memory存储"></a>In-memory存储</h3><p>随着业务的并发越来越高，存储系统对低延迟的要求也越来越高。<strong>In-memory存储</strong>顾名思义就是将<strong>数据存储在内存</strong>中, 从而获得读写的高性能。比较有名的系统包括memcahed，以及Redis。这些<strong>基于K-V键值系统</strong>的主要目的是为基于磁盘的存储系统<strong>做cache</strong>。</p>
+<h3 id="NewSQL"><a href="#NewSQL" class="headerlink" title="NewSQL"></a>NewSQL</h3><p>在结构化存储中提到，单机RDBMS系统在可扩展性上面临着巨大的挑战，然而NoSQL不能很好的支持关系模型。那是不是有一种系统能兼备RDBMS的特性（例如：完整的SQL支持，ACID事务支持），又能像NoSQL系统那样具有强大的可扩展能力呢？</p>
+<p>2012年Google在OSDI上发表的Spanner，以及2013年在SIGMOD发表的F1,让业界第一次看到了关系模型和NoSQL在超大规模数据中心上融合的可能性。
+不过由于这些系统都太过于黑科技了，没有大公司支持应该是做不出来的。比如Spanner里用了原子钟这样的黑科技来解决时钟同步问题，打破光速传输的限制。在这里只能对google表示膜拜。</p>
+<h2 id="分布式计算系统"><a href="#分布式计算系统" class="headerlink" title="分布式计算系统"></a>分布式计算系统</h2><p><strong>分布式计算</strong>最为<strong>核心</strong>的部分就是<strong>容错</strong>。由于硬件的老化，有可能会导致某台存储设备没有启动起来，某台机器的网卡坏了，甚至于计算运行过程中断电了，这些都是有可能的。然而最平凡发生的错误是计算进程被杀掉。</p>
+<p>分布式计算系统大概分为如下几类：</p>
+<ol>
+<li>传统基于msg的系统</li>
+<li>MapReduce-like系统</li>
+<li>图计算系统</li>
+<li>基于状态（state）的系统</li>
+<li>Streaming系统</li>
+</ol>
+<h3 id="传统基于msg的系统"><a href="#传统基于msg的系统" class="headerlink" title="传统基于msg的系统"></a>传统基于msg的系统</h3><p>这类系统里比较有代表性的就是 MPI（message passing interface）。MPI除了提供消息传递接口之外，其框架还实现了资源管理和分配，以及调度的功能。除此之外，MPI在高性能计算里也被广泛使用，通常可以和Infiniband这样的高速网络无缝结合。</p>
+<p>除了send和recv接口之外，MPI中另一个接口也值得注意，那就是AllReduce。使用AllReduce通常只需要在单机核心源码里加入AllReduce一行代码，就能完成并行化的功能。因为其底层消息传递使用了tree aggregation，尽可能的将计算分摊到每一个节点。</p>
+<p>因为MPI不支持容错，所以很难扩展到大规模集群之上。</p>
+<h3 id="MapReduce-like系统"><a href="#MapReduce-like系统" class="headerlink" title="MapReduce-like系统"></a>MapReduce-like系统</h3><p>这一类系统又叫作dataflow系统，其中以MapReduce(Hadoop)和Spark为代表。这一类系统的特点是将计算抽象成为high-level operator,例如像map，reduce，filter这样的函数式算子，然后将算子组合成DAG，然后由后端的调度引擎进行并行化调度。</p>
+<p>MapReduce-like的编程风格和MPI截然相反。MapReduce对程序的结构有严格的约束——计算过程必须能在两个函数中描述：map和reduce；输入和输出数据都必须是一个一个的records；任务之间不能通信，整个计算过程中唯一的通信机会是map phase和reduce phase之间的shuffling phase，这是在框架控制下的，而不是应用代码控制的。因为有了严格的控制，系统框架在任何时候出错都可以从上一个状态恢复。</p>
+<p>由于良好的扩展性，许多人都机器学习算法的并行化任务放在了这些平台之上。然而这些系统最大缺点有两点：</p>
+<ol>
+<li>这些系统所能支持的机器学习模型通常都不是很大。导致这个问题的主要原因是这系统在push back机器学习模型时都是粗粒度的把整个模型进行回传，导致了网络通信的瓶颈。</li>
+<li>严格的BSP同步计算使得集群的效率变的很低。也就是说系统很容易受到straggle的影响。</li>
+</ol>
+<h3 id="图计算系统"><a href="#图计算系统" class="headerlink" title="图计算系统"></a>图计算系统</h3><p>图计算系统是分布式计算里另一个分支，这些系统都是把计算过程抽象成图，然后在不同节点分布式执行，例如PageRank这样的任务，很适合用图计算系统来表示。</p>
+<p>最早成名的图计算系统当属Google的pregel，该系统采用BSP模型，计算以vectex为中心。
+除了同步（BSP）图计算系统之外，异步图计算系统里的佼佼者当属GraphLab，该系统提出了GAS的编程模型。</p>
+<h3 id="基于状态（state）的系统"><a href="#基于状态（state）的系统" class="headerlink" title="基于状态（state）的系统"></a>基于状态（state）的系统</h3><p>这一类系统主要包括2010年OSDI上推出的Piccolo,以及后来2012年nips上Google推出的dist belief再到后来被机器系学习领域广泛应用的Parameter Server架构。</p>
+<p>ParameterServer这种state-centric模型则把机器学习的模型存储参数上升为主要组件，并且采用异步机制提升处理能力。它通过采用分布式的 memcached 作为存放参数的存储，这样就提供了有效的机制作用于不同worker节点同步模型参数。</p>
+<h3 id="Streaming-系统"><a href="#Streaming-系统" class="headerlink" title="Streaming 系统"></a>Streaming 系统</h3><p>Streaming系统是为流式数据提供服务的。其中比较有名的系统包括Storm,SparkStreaming,Flink等等。</p>
+<h2 id="分布式管理系统"><a href="#分布式管理系统" class="headerlink" title="分布式管理系统"></a>分布式管理系统</h2><p>暂无笔记。</p>
+<h2 id="学习总结"><a href="#学习总结" class="headerlink" title="学习总结"></a>学习总结</h2><p>鉴于新冠肺炎疫情封城措施，在磊哥的建议下初识了分布式的广阔世界。希望以后有机会能根据公司的业务场景，去继续深挖学习其中一个方向，并在实战中做出成果。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/08/web性能优化的常见方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1783,159 +1967,6 @@ o1 和 o2 没区别</li>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/JavaScript数据类型转换/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="eririgasuki">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Blog for learning">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/31/JavaScript数据类型转换/" itemprop="url">JavaScript数据类型转换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-31T14:07:37+08:00">
-                2018-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><h2 id="任意类型转字符串"><a href="#任意类型转字符串" class="headerlink" title="任意类型转字符串"></a>任意类型转字符串</h2><ol>
-<li>Sting(x)
-<img src="https://i.loli.net/2018/12/31/5c29c91a8febb.jpg" alt="String(x).jpg"></li>
-<li>x.toString()
-<img src="https://i.loli.net/2018/12/31/5c29c91abfa91.jpg" alt="toSting.jpg"></li>
-<li>x + ‘’
-<img src="https://i.loli.net/2018/12/31/5c29c91aaa96a.jpg" alt="x+&#39;&#39;.jpg"></li>
-</ol>
-<h2 id="任意类型转数字"><a href="#任意类型转数字" class="headerlink" title="任意类型转数字"></a>任意类型转数字</h2><ul>
-<li>Number(x)</li>
-<li>parseInt(x, 10) MDN</li>
-<li>parseFloat(x) MDN</li>
-<li>x - 0</li>
-<li>+x</li>
-</ul>
-<h2 id="任意类型转布尔"><a href="#任意类型转布尔" class="headerlink" title="任意类型转布尔"></a>任意类型转布尔</h2><ol>
-<li>Boolean(x)</li>
-<li>!!x</li>
-</ol>
-<h2 id="内存图"><a href="#内存图" class="headerlink" title="内存图"></a>内存图</h2><p>数据区分为 Stack（栈内存） 和 Heap（堆内存）
-简单类型的数据直接存在 Stack 里
-复杂类型的数据是把 Heap 地址存在 Stack 里</p>
-<p><img src="https://i.loli.net/2018/12/31/5c29d488595df.png" alt="stackHeap.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2</span><br><span class="line">// a = 1</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = &#123;name: &apos;b&apos;&#125;</span><br><span class="line">// a.name = &apos;a&apos;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">// a.name = &apos;b&apos;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;a&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b = null</span><br><span class="line">// a = &apos;a&apos;</span><br></pre></td></tr></table></figure>
-<p>浏览器是先从左到右分析变量，再从右往左计算。所以a.x和a在stack里的地址不同。
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;n:1&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">var a.x = a = &#123;n:2&#125;;</span><br><span class="line"></span><br><span class="line">alert(a.x); // undefined</span><br><span class="line">alert(b.x); // [object object]</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.loli.net/2018/12/31/5c29d7a5cd541.png" alt="stackHeapTest.png"></p>
-<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>清理没有被stack区引用的heap区对象,释放内存空间,供其他对象使用。</p>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>对于简单类型的数据来说，赋值就是深拷贝。
-对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var b = a</span><br><span class="line">b = 2 //这个时候改变 b</span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;name: &apos;frank&apos;&#125;</span><br><span class="line">var b = a</span><br><span class="line">b.name = &apos;b&apos;</span><br><span class="line">a.name === &apos;b&apos; // true</span><br><span class="line">我们对 b 操作后，a 也变了</span><br><span class="line">那么我们就说这是一个浅拷贝</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1986,7 +2017,7 @@ o1 和 o2 没区别</li>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2027,7 +2058,7 @@ o1 和 o2 没区别</li>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
